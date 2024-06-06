@@ -1,26 +1,21 @@
-import React, {useState} from "react";
-import TextButton from "../components/textButton";
-import styles from '../css/panel.module.css'
+import React, {useState, useCallback} from "react";
+import FilterButtonGroup from './filterButtonGroup';
+import RangeSelect from "../components/rangeSelect";
 
-const FilterOptions = ['Brightness', 'Saturation', 'Inversion', 'Grayscale']
+function ControlPanel() {
 
-const FilterPanel = () => {
-    
-    const [filter, setFilter] = useState("brightness");
-    const changeFilter = (value) => {
-        setFilter(value);
-    }
+  const [selectFilter, setFilter] = useState("brightness");
 
-    return(
-        <div className={styles.GroupContainer}> 
-                <label className={styles.LABEL}>Filter</label>
-                <div className={styles.FilterGroup}>
-                    {FilterOptions.map((filter, index) => <TextButton key={index} title={filter} value={filter} handler={changeFilter}/>)}
-                </div>            
-        </div>
-    )
+  const changeFilter = (useCallback = (value) => {
+      setFilter(value);
+  })
 
-
+  return (
+    <div>
+      <FilterButtonGroup currentFilter={selectFilter} changeFilter={changeFilter} />
+      <RangeSelect currentFilter={selectFilter} />
+    </div>
+  );
 }
 
-export default FilterPanel;
+export default ControlPanel;

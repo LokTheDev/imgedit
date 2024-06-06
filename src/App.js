@@ -1,10 +1,10 @@
-import FilterPanel from './containers/controlpanel';
-import './App.css';
+import ControlPanel from './containers/controlpanel';
+import React, {useState, useCallback} from "react";
 
 function App() {
   return (
     <div>
-      <FilterPanel />
+      <ControlPanel />
     </div>
   );
 }

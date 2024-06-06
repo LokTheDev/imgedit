@@ -1,7 +1,7 @@
 import React from "react";
 import styles from '../css/button.module.css'
 
-const TextButton = ({title, style, value, handler}) => {
+const TextButton = ({title, theme, value, handler}) => {
 
     const onClickHanlder = ({target}) => {
         if(!handler) return 
@@ -9,7 +9,7 @@ const TextButton = ({title, style, value, handler}) => {
     }
 
     return (
-        <button className={styles.TextButton + ' ' + styles.style} data-value={value} onClick={onClickHanlder}>{title}</button>
+        <button className={styles.TextButton + ' ' + styles[theme]} data-value={value} onClick={onClickHanlder}>{title}</button>
     )
 
 }

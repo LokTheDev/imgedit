@@ -17,3 +17,8 @@ LABEL {
     grid-row-gap: 0.1rem;
     margin-top: 0.5rem;
 }
+
+.rangeRow{
+    display: flex;
+    align-items: center;
+}
