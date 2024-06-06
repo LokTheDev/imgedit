@@ -44,8 +44,8 @@ function ControlPanel() {
         <FilterButtonGroup currentFilter={selectFilter} changeFilter={changeFilter} />
         <RangeSelect currentFilter={selectFilter} handler={updateFilter} currentRange={range} />
       </div>
-      <ImageContainer filters={filter} uploadImg={img} getDownloadURL={setUrl} />
       <Footer uploadHanlder={onUpload} downloadUrl={downloadUrl} resetHandler={resetHandler} />
+      <ImageContainer filters={filter} uploadImg={img} getDownloadURL={setUrl} />
     </>
   );
 }
