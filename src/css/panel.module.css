@@ -1,0 +1,19 @@
+.GroupContainer{
+    width: 250px;
+    border: 1px solid hsl(210,8%,85%);
+    padding: 1rem;
+}
+
+LABEL {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.FilterGroup {
+    display:grid;
+    grid-template-columns: auto auto;
+    grid-row: auto auto;
+    grid-column-gap: 0.2rem;
+    grid-row-gap: 0.1rem;
+    margin-top: 0.5rem;
+}

@@ -1,0 +1,16 @@
+.TextButton{
+    background-color: #fff;
+    border: 1px solid #00000049;
+    padding: 0.25rem;
+    border-radius: 8px;
+}
+
+.TextButton:hover{
+    background-color: #007AFF;
+    color: #fff;
+}
+
+.TextButton.SELECTED{
+    background-color: rgb(88, 86, 214);
+    color: #fff;
+}
