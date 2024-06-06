@@ -1,3 +1,7 @@
+.PanelHeader {
+    display: flex;
+}
+
 .GroupContainer{
     width: 250px;
     border: 1px solid hsl(210,8%,85%);
@@ -21,4 +25,12 @@ LABEL {
 .rangeRow{
     display: flex;
     align-items: center;
+}
+
+.rangeRow input{
+    margin-right: 1rem;
+}
+
+.imageBox{
+    width: 100%;
 }

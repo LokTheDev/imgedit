@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import styles from '../css/panel.module.css'
 
 
-const RangeSelect = ({ currentFilter, handler }) => {
+const RangeSelect = ({ currentFilter, handler, currentRange}) => {
 
     const [range, setRange] = useState(0)
 
     const onChangeHandler = ({target}) => {
-        setRange(target.value)
+        setRange(target.value);
+        handler(target.value);
     }
 
     return (
