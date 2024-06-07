@@ -63,6 +63,12 @@ function ControlPanel() {
     setImage([...img, textItem])
   }
 
+  const undoHandler = () => {
+    const tmp = img;
+    tmp.pop();
+    setImage([...tmp]);
+  }
+
 
 
   const [downloadUrl, setUrl] = useState("");
@@ -74,7 +80,7 @@ function ControlPanel() {
         <RangeSelect currentFilter={selectFilter} handler={updateFilter} currentRange={range} />
         <TextInput handler={onAddText} />
       </div>
-      <Footer uploadHanlder={onUpload} downloadUrl={downloadUrl} resetHandler={resetHandler} />
+      <Footer undoHandler={undoHandler} uploadHanlder={onUpload} downloadUrl={downloadUrl} resetHandler={resetHandler} />
       <ImageContainer xSetter={setX} ySetter={setY} imgX={addX} imgY={addY} filters={filter} uploadImg={img} getDownloadURL={setUrl} />
     </>
   );
