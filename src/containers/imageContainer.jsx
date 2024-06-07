@@ -1,6 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 
-const ImageContainer = ({ uploadImg, filters, getDownloadURL }) => {
+const ImageContainer = ({ 
+    xSetter,
+    ySetter,
+    imgX,
+    imgY,
+    uploadImg, filters, getDownloadURL }) => {
     const canvasRef = useRef(null);
     let Debounce;
 
@@ -8,25 +13,35 @@ const ImageContainer = ({ uploadImg, filters, getDownloadURL }) => {
         if (uploadImg && !Debounce) {
             const canvas = canvasRef.current;
             const ctx = canvas.getContext("2d");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            for(let item of uploadImg){
+                const img = new Image();
+                img.onload = function () {
 
-            const img = new Image();
-            img.onload = function () {
-                canvas.width = img.width;
-                canvas.height = img.height;
-                ctx.filter = `grayscale(${filters['Grayscale']}%) brightness(${filters['Brightness']}%) saturate(${filters['Saturation']}%) invert(${filters['Inversion']}%)`;
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                const dataURL = canvas.toDataURL('image/png');
-                getDownloadURL(dataURL);
-            };
-            Debounce = setTimeout(
-                img.src = URL.createObjectURL(uploadImg)
-            , 1000)
-            
-        }
-        if(Debounce){
-            clearTimeout(Debounce);
+                    ctx.filter = `grayscale(${filters['Grayscale']}%) brightness(${filters['Brightness']}%) saturate(${filters['Saturation']}%) invert(${filters['Inversion']}%)`;
+                    ctx.drawImage(img, item.x, item.y, item.width, item.height);
+                    console.log(item)
+                    const dataURL = canvas.toDataURL('image/png');
+                    getDownloadURL(dataURL);
+                };
+                img.src = URL.createObjectURL(item.file)
+            }
         }
     }, [uploadImg, filters]);
+
+    useEffect(() => {
+        const handleClick = (e) => {
+            xSetter(e.offsetX);
+            ySetter(e.offsetY);
+            console.log(imgX, imgY)
+          };
+          canvasRef.current.addEventListener("click", handleClick);
+
+          return () => {
+            canvasRef.current.removeEventListener("click", handleClick);
+          };
+    },[imgX, imgY])
 
     return <canvas ref={canvasRef}></canvas>;
 };

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import FilterButtonGroup from './filterButtonGroup';
 import RangeSelect from "../components/rangeSelect";
 import ImageContainer from "./imageContainer"
@@ -31,10 +31,23 @@ function ControlPanel() {
     (setFilterValue({ ...filter, [selectFilter]: value }))
     setRange(value);
   }
-  const [img, setImage] = useState(null);
+
+  const [addX, setX] = useState(0);
+  const [addY, setY] = useState(0);
+
+  const [img, setImage] = useState([]);
   const onUpload = ({ target }) => {
-    setImage(target.files[0])
+    const imageConfig = {
+      file : target.files[0],
+      x: addX,
+      y: addY,
+      width: 100,
+      height: 100
+    }
+    setImage([imageConfig , ...img])
   }
+
+
 
   const [downloadUrl, setUrl] = useState("");
 
@@ -45,7 +58,7 @@ function ControlPanel() {
         <RangeSelect currentFilter={selectFilter} handler={updateFilter} currentRange={range} />
       </div>
       <Footer uploadHanlder={onUpload} downloadUrl={downloadUrl} resetHandler={resetHandler} />
-      <ImageContainer filters={filter} uploadImg={img} getDownloadURL={setUrl} />
+      <ImageContainer xSetter={setX} ySetter={setY} imgX={addX} imgY={addY} filters={filter} uploadImg={img} getDownloadURL={setUrl} />
     </>
   );
 }
