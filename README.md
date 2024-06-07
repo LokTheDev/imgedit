@@ -4,7 +4,7 @@ I use this to refresh my react knowledge and get preped for my next role.
 This is a simple React app that allows users to edit images by applying filters, adding text, and downloading the edited images.
 
 
-![alt text](https://github.com/LokTheDev/imgedit/blob/main/public/img/ui.png?raw=true)
+![alt text](https://github.com/LokTheDev/imgedit/blob/main/public/img/newUI.png?raw=true)
 
 Features
 Filter Application: Users can apply various filters such as Brightness, Saturation, Inversion, and Grayscale to images.
