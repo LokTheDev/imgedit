@@ -3,6 +3,7 @@ import FilterButtonGroup from './filterButtonGroup';
 import RangeSelect from "../components/rangeSelect";
 import ImageContainer from "./imageContainer"
 import Footer from "./footer";
+import TextInput from "../components/text";
 import styles from "../css/panel.module.css";
 
 function ControlPanel() {
@@ -38,6 +39,7 @@ function ControlPanel() {
   const [img, setImage] = useState([]);
   const onUpload = ({ target }) => {
     const imageConfig = {
+      type: "image",
       file : target.files[0],
       x: addX,
       y: addY,
@@ -45,6 +47,20 @@ function ControlPanel() {
       height: 100
     }
     setImage([...img, imageConfig])
+  }
+
+  const onAddText = (text, color = "black", size = 16) => {
+    const textItem = {
+      type: "text",
+      text : text,
+      color : color,
+      size : size,
+      x: addX,
+      y: addY,
+      width: 100,
+      height: 100
+    }
+    setImage([...img, textItem])
   }
 
 
@@ -56,6 +72,7 @@ function ControlPanel() {
       <div className={styles.PanelHeader}>
         <FilterButtonGroup currentFilter={selectFilter} changeFilter={changeFilter} />
         <RangeSelect currentFilter={selectFilter} handler={updateFilter} currentRange={range} />
+        <TextInput handler={onAddText} />
       </div>
       <Footer uploadHanlder={onUpload} downloadUrl={downloadUrl} resetHandler={resetHandler} />
       <ImageContainer xSetter={setX} ySetter={setY} imgX={addX} imgY={addY} filters={filter} uploadImg={img} getDownloadURL={setUrl} />

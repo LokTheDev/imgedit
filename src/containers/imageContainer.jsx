@@ -19,14 +19,24 @@ const ImageContainer = ({
             canvas.height = 1000;
             const loadAndDrawImages = async () => {
                 for (let i = 0; i < uploadImg.length; i++) {
-                    const item = uploadImg[i];
-                    const img = new Image();
-                    await new Promise(resolve => {
-                        img.onload = resolve;
-                        img.src = URL.createObjectURL(item.file);
-                    });
-                    ctx.filter = `grayscale(${filters['Grayscale']}%) brightness(${filters['Brightness']}%) saturate(${filters['Saturation']}%) invert(${filters['Inversion']}%)`;
-                    ctx.drawImage(img, item.x, item.y, img.width, img.height);
+                    if(uploadImg[i].type === "image"){
+                        const item = uploadImg[i];
+                        const img = new Image();
+                        await new Promise(resolve => {
+                            img.onload = resolve;
+                            img.src = URL.createObjectURL(item.file);
+                        });
+                        ctx.filter = `grayscale(${filters['Grayscale']}%) brightness(${filters['Brightness']}%) saturate(${filters['Saturation']}%) invert(${filters['Inversion']}%)`;
+                        ctx.drawImage(img, item.x, item.y, img.width, img.height);
+                    }
+                    if(uploadImg[i].type === "text"){
+                        const item = uploadImg[i];
+                        ctx.fillStyle = item.color;
+                        ctx.font = `bold ${item.size}px Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(item.text, item.x, item.y);
+                    }
                     const dataURL = canvas.toDataURL('image/png');
                     getDownloadURL(dataURL);
                 }
