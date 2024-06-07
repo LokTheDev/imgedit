@@ -44,7 +44,7 @@ function ControlPanel() {
       width: 100,
       height: 100
     }
-    setImage([imageConfig , ...img])
+    setImage([...img, imageConfig])
   }
 
 

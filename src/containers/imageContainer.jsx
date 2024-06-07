@@ -18,10 +18,8 @@ const ImageContainer = ({
             for(let item of uploadImg){
                 const img = new Image();
                 img.onload = function () {
-
                     ctx.filter = `grayscale(${filters['Grayscale']}%) brightness(${filters['Brightness']}%) saturate(${filters['Saturation']}%) invert(${filters['Inversion']}%)`;
-                    ctx.drawImage(img, item.x, item.y, item.width, item.height);
-                    console.log(item)
+                    ctx.drawImage(img, item.x, item.y, img.width, img.height);
                     const dataURL = canvas.toDataURL('image/png');
                     getDownloadURL(dataURL);
                 };
